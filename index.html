@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" integrity="sha256-HAaDW5o2+LelybUhfuk0Zh2Vdk8Y2W2UeKmbaXhalfA=" crossorigin="anonymous" />
+    <title>Impact Tracker Google Analytics Integration Documentation</title>
+    <style>
+      .display-4 {
+        margin: 1.5em 0;
+        font-size: 2.5rem;
+      }
+      .row {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="display-4">Impact Tracker Google Analytics Integration Documentation</h1>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p>Configuring Google Analytics integration for the Impact Tracker visualizer tool requires an Admin level account for Google G Suite and for the Impact Tracker. Only users with Google accounts that have permission to access Google Analytics will be able to view this data within the Impact Tracker.</p>
+          <p>The fist step is to configure Google API credentials. Visit <a href="https://console.developers.google.com/apis/credentials" target="_blank">https://console.developers.google.com/apis/credentials</a> and click <strong>Create</strong> to create a new API project. Name the project <strong>Impact Tracker</strong>, or something similar.</p>
+        </div>
+        <div class="col-md-6">
+          <a href="img/1-credentials-landing-page.png" data-toggle="lightbox">
+            <img src="img/1-credentials-landing-page.png" class="img-fluid">
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p>Click <strong>Create credentials</strong> and select <strong>OAuth client ID</strong>.</p>
+        </div>
+        <div class="col-md-6">
+          <a href="img/2-create-oauth-client-id.png" data-toggle="lightbox">
+            <img src="img/2-create-oauth-client-id.png" class="img-fluid">
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p>You will most likely need to configure the consent screen, which is shown to users of the Impact Tracker when they authorize it to access analytics.</p>
+          <p>Click <strong>Configure consent screen</strong>.</p>
+        </div>
+        <div class="col-md-6">
+          <a href="img/3-configure-consent.png" data-toggle="lightbox">
+            <img src="img/3-configure-consent.png" class="img-fluid">
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p>The only thing on the OAuth Consent Screen that you need to fill out is the <strong>Product name shown to users</strong> field, which should be <strong>Impact Tracker</strong>, or something similar. Every other field is either already filled in, or not mandatory.</p>
+          <p>Click <strong>Save</strong> to continue.</p>
+        </div>
+        <div class="col-md-6">
+          <a href="img/4-consent-screen.png" data-toggle="lightbox">
+            <img src="img/4-consent-screen.png" class="img-fluid">
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p>Click the <strong>Web application</strong> radio button, change the name to <strong>Impact Tracker</strong>, and add the following urls to the <strong>Authorized JavaScript origins</strong> section:</p>
+          <ul>
+            <li><em>http://your-tracker-domain.impact-tracker.org</em></li>
+            <li><em>http://your-tracker-domain.dev.impact-tracker.org</em></li>
+            <li><em>http://your-tracker-domain.stage.impact-tracker.org</em></li>
+          </ul>
+          <p>Replace <em>your-tracker-domain</em> with your organization's subdomain. For example, if your Impact Tracker is <em>http://daily-planet.impact-tracker.org</em>, you should replace <em>your-tracker-domain</em> with <em>daily-planet</em>.</p>
+          <p>Click <strong>Create</strong> to continue.
+        </div>
+        <div class="col-md-6">
+          <a href="img/5-configure-client-id.png" data-toggle="lightbox">
+            <img src="img/5-configure-client-id.png" class="img-fluid">
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p>A popup will show your OAuth client credentials. Copy the <strong>Client ID</strong> and save it to a text document. You will need this in a few minutes. You will not need the <strong>Client secret</strong>.</p>
+          <p>Click <strong>OK</strong> to continue.</p>
+        </div>
+        <div class="col-md-6">
+          <a href="img/6-copy-client-id.png" data-toggle="lightbox">
+            <img src="img/6-copy-client-id.png" class="img-fluid">
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p>We will now enable the Google Analytics Reporting API. Click <strong>Dashboard</strong> in the sidebar then click <strong>Enable APIs and services</strong>.</p>
+        </div>
+        <div class="col-md-6">
+          <a href="img/7-dashboard-enable-apis.png" data-toggle="lightbox">
+            <img src="img/7-dashboard-enable-apis.png" class="img-fluid">
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p>Use the search field to find the <strong>Google Analytics Reporting API</strong> (not the one simply called <em>Analytics API</em>).</p>
+        </div>
+        <div class="col-md-6">
+          <a href="img/8-search-for-analytics.png" data-toggle="lightbox">
+            <img src="img/8-search-for-analytics.png" class="img-fluid">
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Enable</strong> the <strong>Google Analytics Reporting API</strong>.</p>
+        </div>
+        <div class="col-md-6">
+          <a href="img/9-enable-api.png" data-toggle="lightbox">
+            <img src="img/9-enable-api.png" class="img-fluid">
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p>We will now find your Google Analytics <strong>View ID</strong>. Open and log into <a href="https://www.google.com/analytics" target="_blank">Google Analytics</a>. Open the <strong>Admin</strong> settings page (gear icon).</p>
+        </div>
+        <div class="col-md-6">
+          <a href="img/10-visit-google-analytics.png" data-toggle="lightbox">
+            <img src="img/10-visit-google-analytics.png" class="img-fluid">
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p>Use the <strong>View</strong> dropdown to select the view with the data you want displayed in the Impact Tracker. By default this will be called <strong>All Web Site Data</strong>.</p>
+          <p>Click <strong>View Settings</strong>.
+        </div>
+        <div class="col-md-6">
+          <a href="img/11-admin-screen.png" data-toggle="lightbox">
+            <img src="img/11-admin-screen.png" class="img-fluid">
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p>Find the <strong>View ID</strong> and copy it to the text document.</p>
+        </div>
+        <div class="col-md-6">
+          <a href="img/12-copy-view-id.png" data-toggle="lightbox">
+            <img src="img/12-copy-view-id.png" class="img-fluid">
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p>Open and log into your organization's Impact Tracker. From the admin menu bar, select <strong> Configuration</strong> &gt; <strong>System</strong> &gt; <strong>Visualizer Google Analytics Integration</strong>.</p>
+        </div>
+        <div class="col-md-6">
+          <a href="img/13-open-ga-integration-page.png" data-toggle="lightbox">
+            <img src="img/13-open-ga-integration-page.png" class="img-fluid">
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p>Paste in the <strong>OAuth Client ID</strong> and <strong>Google Analytics View ID</strong> that you copied earlier.</p>
+          <p>Click <strong>Save configuration</strong>.</p>
+        </div>
+        <div class="col-md-6">
+          <a href="img/14-paste-ids.png data-toggle="lightbox">
+            <img src="img/14-paste-ids.png" class="img-fluid">
+          </a>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p>You are now done integrating Google Analytics with the Impact Tracker. However, all users of the Impact Tracker will need to authorize it will their Google account in order to view the analytics data. When viewing the visualizer a <strong>Google Sign in</strong> button will appear, which will guide them through authorizing the app. They will only need to do this once, unless they switch browsers, computers, or clear their cookies.</p>
+          <p>Authorizing each user separately keeps your analytics data secure and private. You organization's Google Analytics data is not stored by the Impact Tracker. The user's Google account must be authorized to view Google Analytics in order for them to view that data in the Impact Tracker.</p>
+        </div>
+        <div class="col-md-6">
+          <a href="img/15-click-sign-in.png" data-toggle="lightbox">
+            <img src="img/15-click-sign-in.png" class="img-fluid"></div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.js" integrity="sha256-jGAkJO3hvqIDc4nIY1sfh/FPbV+UK+1N+xJJg6zzr7A=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+      $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+        event.preventDefault();
+        $(this).ekkoLightbox();
+      });
+    </script>
+  </body>
+</html>
